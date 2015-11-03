@@ -1,6 +1,6 @@
-wysihtml5.polyfills = function(win, doc) {
+(function(win, doc) {
 
-  // TODO: in future try to replace most inline compability checks with polyfills for code readability 
+  // TODO: in future try to replace most inline compability checks with polyfills for code readability
 
   // IE8 SUPPORT BLOCK
   // You can compile without all this if IE8 is not needed
@@ -437,19 +437,17 @@ wysihtml5.polyfills = function(win, doc) {
     };
     Node.prototype.normalize = nf;
   };
-  
+
   var F = function() {
     window.removeEventListener("load", F);
     if ("Node" in window && "normalize" in Node.prototype && normalizeHasCaretError()) {
       normalizeFix();
     }
   };
-  
+
   if (doc.readyState !== "complete") {
     window.addEventListener("load", F);
   } else {
     F();
   }
-};
-
-wysihtml5.polyfills(window, document);
+})(window, document);
