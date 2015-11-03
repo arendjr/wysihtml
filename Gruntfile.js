@@ -2,10 +2,14 @@ module.exports = function(grunt) {
 
   "use strict";
 
+  // List required files for IE8 support
+  var legacy = [
+    "src/polyfills.js"
+  ];
+
   // List required source files that will be built into wysihtml5x.js
   var base = [
     "src/wysihtml5.js",
-    "src/polyfills.js",
     "node_modules/rangy/lib/rangy-core.js",
     "node_modules/rangy/lib/rangy-textrange.js",
     "node_modules/rangy/lib/rangy-selectionsaverestore.js",
@@ -120,6 +124,11 @@ module.exports = function(grunt) {
     "src/toolbar/dialog_foreColorStyle.js",
     "src/toolbar/dialog_fontSizeStyle.js"
   ];
+
+  // Command-line options.
+  if (!grunt.option('no-legacy')) {
+    base = legacy.concat(base);
+  }
 
   // Project configuration.
   grunt.initConfig({
