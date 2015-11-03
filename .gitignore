@@ -5,3 +5,4 @@
 node_modules
 local_assets
 .tm_properties
+*.sublime*
